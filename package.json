@@ -1,0 +1,40 @@
+{
+  "name": "grunt-qunitnode",
+  "version": "0.0.1",
+  "description": "A Grunt task plugin to execute QUnit tests in Node.js.",
+  "main": "tasks/qunitnode.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JamesMGreene/grunt-qunitnode.git"
+  },
+  "author": "James M. Greene",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/JamesMGreene/grunt-qunitnode/issues"
+  },
+  "homepage": "https://github.com/JamesMGreene/grunt-qunitnode",
+  "peerDependencies": {
+    "qunitjs": "1.x"
+  },
+  "devDependencies": {
+    "chalk": "0.4.0",
+    "difflet": "0.2.6",
+    "grunt": "0.4.2",
+    "grunt-contrib-jshint": "0.8.0",
+    "qunitjs": "~1.14.0"
+  },
+  "keywords": [
+    "QUnit",
+    "Grunt",
+    "Node",
+    "gruntplugin"
+  ]
+}
