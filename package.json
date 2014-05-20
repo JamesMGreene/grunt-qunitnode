@@ -24,8 +24,10 @@
   "peerDependencies": {
     "qunitjs": "1.x"
   },
+  "dependencies": {
+    "chalk": "0.4.0"
+  },
   "devDependencies": {
-    "chalk": "0.4.0",
     "difflet": "0.2.6",
     "grunt": "0.4.2",
     "grunt-contrib-jshint": "0.8.0",
