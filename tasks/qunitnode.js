@@ -137,7 +137,7 @@ module.exports = function( grunt ) {
 		status = { failed: 0, passed: 0, total: 0, runtime: 0 };
 
 		grunt.util.async.forEachSeries( this.filesSrc, function( src, nextStep ) {
-			var testFile = path.join( __dirname, "../" + src );
+			var testFile = path.resolve( src );
 
 			grunt.event.emit( "qunitnode.spawn", src );
 
