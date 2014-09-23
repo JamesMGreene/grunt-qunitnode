@@ -12,6 +12,7 @@ module.exports = function( grunt ) {
 	var QUnit = require( "qunitjs" ),
 		path = require( "path" ),
 		chalk = require( "chalk" ),
+		async = require( "async" ),
 
 		// Keep track of the last-started test and status.
 		next, options, currentTest, status,
@@ -125,7 +126,7 @@ module.exports = function( grunt ) {
 		next();
 	});
 
-	grunt.registerMultiTask( "qunitnode", "QUnit tests in Node.js.", function() {		
+	grunt.registerMultiTask( "qunitnode", "QUnit tests in Node.js.", function() {
 		var done = this.async();
 
 		// Merge task-specific and/or target-specific options with these defaults.
@@ -136,7 +137,7 @@ module.exports = function( grunt ) {
 		// Reset status.
 		status = { failed: 0, passed: 0, total: 0, runtime: 0 };
 
-		grunt.util.async.forEachSeries( this.filesSrc, function( src, nextStep ) {
+		async.eachSeries( this.filesSrc, function( src, nextStep ) {
 			var testFile = path.resolve( src );
 
 			grunt.event.emit( "qunitnode.spawn", src );
