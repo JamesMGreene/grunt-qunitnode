@@ -1,6 +1,6 @@
 {
   "name": "grunt-qunitnode",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "A Grunt task plugin to execute QUnit tests in Node.js.",
   "main": "tasks/qunitnode.js",
   "scripts": {
@@ -10,7 +10,14 @@
     "type": "git",
     "url": "git://github.com/JamesMGreene/grunt-qunitnode.git"
   },
-  "author": "James M. Greene",
+  "author": {
+    "name": "James M. Greene",
+    "email": "james.m.greene@gmail.com",
+    "url": "http://greene.io/"
+  },
+  "contributors": [
+    "Leonardo Balter"
+  ],
   "licenses": [
     {
       "type": "MIT",
