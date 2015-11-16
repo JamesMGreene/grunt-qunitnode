@@ -2,14 +2,14 @@
  * grunt-qunitnode
  * https://github.com/JamesMGreene/grunt-qunitnode
  *
- * Copyright (c) 2012 JamesMGreene
+ * Copyright (c) 2012-2015 James M. Greene
  * Licensed under the MIT license.
  */
 
 "use strict";
 
 module.exports = function( grunt ) {
-	var QUnit = require( "qunitjs" ),
+	var QUnit = require( "qunitjs" ).QUnit,
 		path = require( "path" ),
 		chalk = require( "chalk" ),
 		async = require( "async" ),
@@ -66,6 +66,21 @@ module.exports = function( grunt ) {
 
 			grunt.log.writeln();
 		}
+	}
+
+	function reinitQUnit() {
+		// This is extracted from the body of the deprecated `QUnit.init` method,
+		// which is no longer accessible when running on a non-browser environment
+		var config = QUnit.config;
+		config.stats = { all: 0, bad: 0 };
+		config.moduleStats = { all: 0, bad: 0 };
+		config.started = 0;
+		config.updateRate = 1000;
+		config.blocking = false;
+		config.autostart = true;
+		config.autorun = false;
+		config.filter = "";
+		config.queue = [];
 	}
 
 	QUnit.log(function( details ) {
@@ -126,6 +141,11 @@ module.exports = function( grunt ) {
 		next();
 	});
 
+	// Attach QUnit to the Node.js global object to simplify tests
+	global.QUnit = QUnit;
+
+
+
 	grunt.registerMultiTask( "qunitnode", "QUnit tests in Node.js.", function() {
 		var done = this.async();
 
@@ -142,8 +162,7 @@ module.exports = function( grunt ) {
 
 			grunt.event.emit( "qunitnode.spawn", src );
 
-			QUnit.config.autostart = false;
-			QUnit.init();
+			reinitQUnit();
 
 			grunt.verbose.subhead( "Testing " + src + " ").or.write( "Testing " + src + " " );
 
